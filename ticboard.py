@@ -43,14 +43,13 @@ class TicBoard():
         out += "\tB: {} | {} | {} \n".format(self.spaces[6], self.spaces[7], self.spaces[8])
         return out
 
-    def place(self, player, space):
-        self.spaces[space] = player['symbol']
-        self.free -= 1
-        if self.checkWin():
-            self.winnerID = player['id']
-            self.canPlacePiece = False
-        elif self.free == 0:
-            self.canPlacePiece = False
+    def place(self, symbol, space):
+        """Divide into two functions."""
+        self.spaces[space] = symbol
+        if symbol == ' ':
+            self.free += 1
+        else:
+            self.free -= 1
 
     def validSpace(self, playerInput):
         for i in range(9):
